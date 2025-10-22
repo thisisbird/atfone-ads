@@ -1,0 +1,1835 @@
+<!DOCTYPE html>
+
+<html lang="zh-TW">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>atfone ads | 專業團隊洞察，驅動廣告效益極大化</title>
+
+
+
+    <!-- 載入 Tailwind CSS CDN -->
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- 載入 Icon 庫 (Lucide Icons) -->
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+
+
+    <style>
+
+        /* 使用 Inter 字體（Tailwind 預設，專業、乾淨） */
+
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+        
+
+        /* 由於在 iFrame 內，body/html 必須設置為 100% 以便內容充滿 */
+
+        html, body {
+
+            margin: 0;
+
+            padding: 0;
+
+            width: 100%;
+
+            height: auto; /* 讓內容決定高度 */
+
+            min-height: 100vh;
+
+            font-family: 'Inter', sans-serif;
+
+            scroll-behavior: smooth;
+
+            background-color: #f8fafc; /* light slate background */
+
+            color: #1e293b; /* base slate color */
+
+        }
+
+        
+
+        /* 自定義藍色調 */
+
+        .primary-blue { background-color: #1D4ED8; } /* deep blue */
+
+        .primary-blue-text { color: #1D4ED8; }
+
+        .secondary-blue { background-color: #3B82F6; } /* cobalt blue */
+
+        .accent-shadow { box-shadow: 0 10px 15px -3px rgba(59, 130, 246, 0.5), 0 4px 6px -2px rgba(59, 130, 246, 0.05); }
+
+
+
+        /* 讓 Lucide icons 響應顏色 */
+
+        .lucide { display: inline-block; width: 1em; height: 1em; stroke-width: 2; stroke: currentColor; fill: none; }
+
+
+
+        /* 網格視覺效果 (僅用於 Hero/Tech 背景) - 維持科技感視覺 */
+
+        .grid-bg {
+
+            background-image: linear-gradient(to right, rgba(29, 78, 216, 0.1) 1px, transparent 1px),
+
+                              linear-gradient(to bottom, rgba(29, 78, 216, 0.1) 1px, transparent 1px);
+
+            background-size: 40px 40px;
+
+        }
+
+
+
+        /* 滾動動畫效果 */
+
+        .nav-link:hover {
+
+            color: #1D4ED8;
+
+            transition: color 0.3s;
+
+        }
+
+        .nav-link {
+
+             position: relative;
+
+        }
+
+        .nav-link::after {
+
+            content: '';
+
+            position: absolute;
+
+            width: 0;
+
+            height: 2px;
+
+            bottom: -5px;
+
+            left: 0;
+
+            background-color: #3B82F6;
+
+            transition: width 0.3s ease-in-out;
+
+        }
+
+        .nav-link:hover::after {
+
+            width: 100%;
+
+        }
+
+
+
+        /* 流程圖的自定義樣式 */
+
+        .process-step {
+
+            position: relative;
+
+        }
+
+        /* 在 MD 螢幕以上，流程線條是水平的 */
+
+        @media (min-width: 768px) {
+
+            .process-step::after {
+
+                content: '';
+
+                position: absolute;
+
+                top: 50%;
+
+                left: 100%;
+
+                transform: translateY(-50%);
+
+                width: 40px;
+
+                height: 2px;
+
+                background-color: #3B82F6;
+
+                z-index: 0;
+
+            }
+
+            .process-step:last-child::after {
+
+                display: none;
+
+            }
+
+        }
+
+        /* 在行動裝置上，流程線條是垂直的 */
+
+        @media (max-width: 767px) {
+
+            .process-step::after {
+
+                content: '';
+
+                position: absolute;
+
+                top: 100%;
+
+                left: 50%;
+
+                transform: translateX(-50%);
+
+                width: 2px;
+
+                height: 40px;
+
+                background-color: #3B82F6;
+
+                z-index: 0;
+
+            }
+
+            .process-step:last-child::after {
+
+                display: none;
+
+            }
+
+        }
+
+
+
+
+
+        /* 媒體 Logo 專用樣式 (用於聯盟夥伴服務區塊) */
+
+        .media-logo-card {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 1rem 1.5rem;
+
+            background-color: white; /* 統一為白色背景 */
+
+            border-radius: 9999px; /* rounded-full */
+
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.03);
+
+            border: 1px solid #cbd5e1; /* 統一為淺灰色邊框 */
+
+            transition: transform 0.3s;
+
+        }
+
+        .media-logo-card:hover {
+
+            transform: translateY(-3px);
+
+            border-color: #3B82F6; /* Hover 時邊框變藍 */
+
+        }
+
+        /* 針對成功案例區塊增加樣式 */
+
+        .case-metric {
+
+            border-bottom: 3px solid #1D4ED8; /* 主藍色底部線條 */
+
+            padding-bottom: 0.5rem;
+
+            margin-bottom: 0.5rem;
+
+        }
+
+        
+
+        /* 獨家優勢卡片專屬樣式 */
+
+        .advantage-card {
+
+            background-image: linear-gradient(135deg, #3B82F6 0%, #1D4ED8 100%);
+
+            box-shadow: 0 10px 20px rgba(29, 78, 216, 0.3);
+
+            transition: transform 0.3s;
+
+        }
+
+        .advantage-card:hover {
+
+            transform: translateY(-5px);
+
+        }
+
+        
+
+        /* 企業級 Meta 帳戶優勢卡片專屬樣式 */
+
+        .meta-advantage-card {
+
+            background-color: white;
+
+            padding: 24px;
+
+            border-radius: 12px;
+
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+
+            display: flex;
+
+            flex-direction: column;
+
+            align-items: center;
+
+            text-align: center;
+
+        }
+
+        .meta-icon-container {
+
+            width: 80px;
+
+            height: 80px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 50%;
+
+            margin-bottom: 16px;
+
+            /* 使用一個淡紫色的漸變背景，來模擬原圖的視覺效果 */
+
+            background-image: linear-gradient(45deg, #e0f2fe, #f0f9ff);
+
+            /* 讓 icon 呈現紫色系漸變 (模擬原圖) */
+
+            color: #6d28d9; /* Deep violet color for icons */
+
+        }
+
+
+
+        /* 提示訊息 Modal 樣式 */
+
+        .message-modal {
+
+            position: fixed;
+
+            top: 50%;
+
+            left: 50%;
+
+            transform: translate(-50%, -50%);
+
+            background-color: white;
+
+            padding: 24px;
+
+            border-radius: 12px;
+
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+
+            z-index: 100;
+
+            max-width: 90%;
+
+            text-align: center;
+
+        }
+
+        .message-backdrop {
+
+            position: fixed;
+
+            inset: 0;
+
+            background-color: rgba(0, 0, 0, 0.5);
+
+            z-index: 90;
+
+        }
+
+
+
+    </style>
+
+</head>
+
+<body class="text-slate-800">
+
+
+
+    <!-- 頂部導航欄 (Sticky Header) -->
+
+    <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-sm shadow-md">
+
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+
+            <a href="#home" class="text-3xl font-extrabold primary-blue-text tracking-tight">
+
+                atfone <span class="text-slate-600 font-light">ads</span>
+
+            </a>
+
+            
+
+            <!-- Desktop Navigation -->
+
+            <nav class="hidden md:flex space-x-8 text-lg font-medium">
+
+                <a href="#advantages" class="nav-link text-slate-700 hover:text-blue-600">獨家優勢</a>
+
+                <a href="#services" class="nav-link text-slate-700 hover:text-blue-600">核心服務</a>
+
+                <a href="#meta-pro" class="nav-link text-slate-700 hover:text-blue-600">Meta 專案</a>
+
+                <a href="#cases" class="nav-link text-slate-700 hover:text-blue-600">成功案例</a>
+
+                <a href="#partner-services" class="nav-link text-slate-700 hover:text-blue-600">聯盟服務</a>
+
+                <a href="#contact" class="nav-link text-slate-700 hover:text-blue-600">聯絡我們</a>
+
+            </nav>
+
+
+
+            <!-- CTA Button -->
+
+            <a href="#contact" class="hidden md:block px-6 py-2 text-white secondary-blue font-semibold rounded-full hover:bg-blue-600 transition duration-300 accent-shadow">
+
+                免費諮詢
+
+            </a>
+
+
+
+            <!-- Mobile Menu Button -->
+
+            <button id="mobile-menu-button" class="md:hidden text-slate-700 hover:text-blue-500">
+
+                <!-- Menu Icon -->
+
+                <svg class="lucide w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+
+            </button>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- Mobile Menu Overlay -->
+
+    <div id="mobile-menu" class="hidden fixed inset-0 bg-white z-40 p-6 flex flex-col items-center justify-center space-y-8 md:hidden">
+
+        <a href="#advantages" class="text-3xl font-semibold text-slate-700 hover:text-blue-600" onclick="hideMobileMenu()">獨家優勢</a>
+
+        <a href="#services" class="text-3xl font-semibold text-slate-700 hover:text-blue-600" onclick="hideMobileMenu()">核心服務</a>
+
+        <a href="#meta-pro" class="text-3xl font-semibold text-slate-700 hover:text-blue-600" onclick="hideMobileMenu()">Meta 專案</a>
+
+        <a href="#cases" class="text-3xl font-semibold text-slate-700 hover:text-blue-600" onclick="hideMobileMenu()">成功案例</a>
+
+        <a href="#partner-services" class="text-3xl font-semibold text-slate-700 hover:text-blue-600" onclick="hideMobileMenu()">聯盟服務</a>
+
+        <a href="#contact" class="text-3xl font-semibold text-slate-700 hover:text-blue-600" onclick="hideMobileMenu()">聯絡我們</a>
+
+        <button onclick="hideMobileMenu()" class="absolute top-6 right-6 text-slate-700 hover:text-red-500">
+
+            <!-- Close Icon -->
+
+            <svg class="lucide w-8 h-8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" x2="6" y1="6" y2="18"/><line x1="6" x2="18" y1="6" y2="18"/></svg>
+
+        </button>
+
+    </div>
+
+
+
+    <main>
+
+        
+
+        <!-- 1. Hero Section (強調專業洞察) -->
+
+        <section id="home" class="relative overflow-hidden pt-24 pb-32 grid-bg">
+
+            <div class="container mx-auto px-6 z-10">
+
+                <!-- 更新: 配合主題改為 Comprehensive Media Strategy -->
+
+                <p class="text-lg font-semibold primary-blue-text mb-4 uppercase tracking-widest">
+
+                    atfone ads | Comprehensive Media Strategy
+
+                </p>
+
+                <!-- 標題：字體已從 text-4xl/md:text-6xl 縮小為 text-3xl/md:text-5xl -->
+
+                <h1 class="text-3xl md:text-5xl font-extrabold text-slate-900 leading-tight mb-6 max-w-4xl">
+
+                    專業團隊洞察，驅動廣告效益極大化
+
+                </h1>
+
+                <!-- 輔助文字 (靠左對齊) -->
+
+                <p class="text-xl md:text-2xl text-slate-600 max-w-3xl mb-10">
+
+                    將每一次廣告點擊，轉換成可衡量的投資回報
+
+                </p>
+
+                <!-- CTA Button (靠左對齊) -->
+
+                <a href="#contact" class="inline-block px-10 py-4 text-xl text-white secondary-blue font-bold rounded-xl hover:bg-blue-600 transition duration-300 transform hover:scale-105 accent-shadow">
+
+                    立即獲取專屬投放策略
+
+                </a>
+
+            </div>
+
+            <!-- 視覺裝飾：模擬數據流 -->
+
+            <div class="absolute inset-0 opacity-10">
+
+                <svg width="100%" height="100%">
+
+                    <defs>
+
+                        <linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+
+                            <stop offset="0%" style="stop-color:#3B82F6;stop-opacity:0.2" />
+
+                            <stop offset="100%" style="stop-color:#1D4ED8;stop-opacity:0.05" />
+
+                        </linearGradient>
+
+                    </defs>
+
+                    <rect width="100%" height="100%" fill="url(#gradient)" />
+
+                    <path d="M 0 50 C 200 150, 400 -50, 600 100 S 800 250, 1000 150" stroke="#3B82F6" stroke-width="1" fill="none" opacity="0.1" />
+
+                    <path d="M 0 200 C 300 100, 700 300, 1200 200" stroke="#1D4ED8" stroke-width="1" fill="none" opacity="0.15" />
+
+                </svg>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- 2. 客戶常見痛點 Section -->
+
+        <section id="pain-points" class="py-20 md:py-32 bg-white">
+
+            <div class="container mx-auto px-6">
+
+                <div class="text-center mb-16">
+
+                    <span class="text-sm font-semibold primary-blue-text uppercase tracking-widest">您的挑戰，我們的解決方案</span>
+
+                    <h2 class="text-4xl md:text-5xl font-bold text-slate-900 mt-2">常見廣告投放痛點分析</h2>
+
+                </div>
+
+
+
+                <!-- 網格結構調整為 3 欄 (lg:grid-cols-3) 以容納 6 個項目 -->
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                    
+
+                    <!-- 痛點 1: 廣告目標太多，難以抉擇 -->
+
+                    <div class="p-6 bg-slate-50 rounded-xl shadow-md border-t-4 border-blue-400">
+
+                        <div class="p-3 inline-block primary-blue-text mb-4">
+
+                            <!-- Target Icon (目標) -->
+
+                            <svg class="lucide w-8 h-8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+
+                        </div>
+
+                        <h3 class="text-xl font-bold text-slate-900 mb-2">廣告目標太多，難以抉擇</h3>
+
+                        <p class="text-slate-600 text-sm">廣告目標選項繁多（10幾種），不知道如何根據產品生命週期和現階段需求進行最佳選擇。</p>
+
+                    </div>
+
+                    
+
+                    <!-- 痛點 2: 受眾鎖定不精準 -->
+
+                    <div class="p-6 bg-slate-50 rounded-xl shadow-md border-t-4 border-blue-400">
+
+                        <div class="p-3 inline-block primary-blue-text mb-4">
+
+                            <!-- Users Icon (受眾) -->
+
+                            <svg class="lucide w-8 h-8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 17v-2a4 4 0 0 0-2-3.46"/><path d="M20 10V7"/><path d="M20 7h-3"/></svg>
+
+                        </div>
+
+                        <h3 class="text-xl font-bold text-slate-900 mb-2">受眾鎖定不精準</h3>
+
+                        <p class="text-slate-600 text-sm">不清楚如何精準圈定目標客群，導致廣告資源浪費，難以找到高價值轉換用戶。</p>
+
+                    </div>
+
+                    
+
+                    <!-- 痛點 3: 數據解讀與優化困難 -->
+
+                    <div class="p-6 bg-slate-50 rounded-xl shadow-md border-t-4 border-blue-400">
+
+                        <div class="p-3 inline-block primary-blue-text mb-4">
+
+                            <!-- Bar Chart Icon (數據) -->
+
+                            <svg class="lucide w-8 h-8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-4"/></svg>
+
+                        </div>
+
+                        <h3 class="text-xl font-bold text-slate-900 mb-2">數據解讀與優化困難</h3>
+
+                        <p class="text-slate-600 text-sm">面對複雜的數據報表，無法有效解讀並應用於優化決策，錯失提升效益的良機。</p>
+
+                    </div>
+
+
+
+                    <!-- 痛點 4: 素材與格式效果不佳 -->
+
+                    <div class="p-6 bg-slate-50 rounded-xl shadow-md border-t-4 border-blue-400">
+
+                        <div class="p-3 inline-block primary-blue-text mb-4">
+
+                            <!-- Feather Icon (素材/格式) -->
+
+                            <svg class="lucide w-8 h-8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 20-7-7 4-4 2 2 4-4 2 2 4-4 2 2"/><path d="M18 13l-4 4-2-2-4 4-7-7"/></svg>
+
+                        </div>
+
+                        <h3 class="text-xl font-bold text-slate-900 mb-2">素材與格式效果不佳</h3>
+
+                        <p class="text-slate-600 text-sm">素材無法吸引目光、文案不動人心，且不確定哪種廣告格式（圖、文、影）成效最好。</p>
+
+                    </div>
+
+
+
+                    <!-- 痛點 5: 媒體選擇與整合迷茫 -->
+
+                    <div class="p-6 bg-slate-50 rounded-xl shadow-md border-t-4 border-blue-400">
+
+                        <div class="p-3 inline-block primary-blue-text mb-4">
+
+                            <!-- Tv Icon (媒體) -->
+
+                            <svg class="lucide w-8 h-8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="15" rx="2" ry="2"/><polyline points="17 2 12 7 7 2"/></svg>
+
+                        </div>
+
+                        <h3 class="text-xl font-bold text-slate-900 mb-2">媒體選擇與整合迷茫</h3>
+
+                        <p class="text-slate-600 text-sm">主流廣告媒體眾多，不知道該選擇 Meta、Google、LINE 還是 Dcard，難以形成整合策略。</p>
+
+                    </div>
+
+
+
+                    <!-- 痛點 6: 預算分配與檔期規劃 -->
+
+                    <div class="p-6 bg-slate-50 rounded-xl shadow-md border-t-4 border-blue-400">
+
+                        <div class="p-3 inline-block primary-blue-text mb-4">
+
+                            <!-- Dollar Sign Icon (預算) -->
+
+                            <svg class="lucide w-8 h-8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+
+                        </div>
+
+                        <h3 class="text-xl font-bold text-slate-900 mb-2">預算分配與檔期規劃</h3>
+
+                        <p class="text-slate-600 text-sm">多媒體預算難以取捨，不清楚如何在不同行銷檔期（如雙十一、節慶）進行科學化的預算配置。</p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        
+
+        <!-- 3. NEW: 資深經驗與獨家優勢 Section (資歷證明) -->
+
+        <section id="advantages" class="py-20 md:py-32 bg-slate-800">
+
+            <div class="container mx-auto px-6">
+
+                <div class="text-center mb-16">
+
+                    <span class="text-sm font-semibold text-blue-300 uppercase tracking-widest">為什麼選擇 atfone ads</span>
+
+                    <h2 class="text-4xl md:text-5xl font-bold text-white mt-2">資深經驗與獨家優勢</h2>
+
+                </div>
+
+                
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+
+                    
+
+                    <!-- 優勢 1: 服務上千品牌客戶 -->
+
+                    <div class="advantage-card p-6 rounded-xl text-white text-center">
+
+                        <h3 class="text-2xl font-extrabold mb-2">服務上千品牌客戶</h3>
+
+                        <p class="text-base font-light">豐富多元的合作經驗</p>
+
+                    </div>
+
+
+
+                    <!-- 優勢 2: 經手預算破億 -->
+
+                    <div class="advantage-card p-6 rounded-xl text-white text-center">
+
+                        <h3 class="text-2xl font-extrabold mb-2">經手預算破億</h3>
+
+                        <p class="text-base font-light">從 3 萬到 300 萬，精準分配各種規模廣告預算</p>
+
+                    </div>
+
+
+
+                    <!-- 優勢 3: 5 年以上專業經驗 -->
+
+                    <div class="advantage-card p-6 rounded-xl text-white text-center">
+
+                        <h3 class="text-2xl font-extrabold mb-2">5 年以上專業經驗</h3>
+
+                        <p class="text-base font-light">團隊成員皆有 5 年以上數位行銷經驗</p>
+
+                    </div>
+
+
+
+                    <!-- 優勢 4: 全媒體與產業專精 -->
+
+                    <div class="advantage-card p-6 rounded-xl text-white text-center">
+
+                        <h3 class="text-2xl font-extrabold mb-2">全媒體與產業專精</h3>
+
+                        <p class="text-base font-light">跨平台整合服務</p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+
+
+        <!-- 4. 核心服務範疇 Section -->
+
+        <section id="services" class="py-20 md:py-32 bg-slate-50">
+
+            <div class="container mx-auto px-6">
+
+                <div class="text-center mb-16">
+
+                    <span class="text-sm font-semibold primary-blue-text uppercase tracking-widest">全方位媒體與專業服務</span>
+
+                    <h2 class="text-4xl md:text-5xl font-bold text-slate-900 mt-2">主流媒體投放與核心服務支柱</h2>
+
+                    <p class="text-xl text-slate-600 mt-4 max-w-4xl mx-auto">
+
+                        我們精通跨渠道整合策略，為您打造涵蓋所有主流平台的最佳投放組合。
+
+                    </p>
+
+                </div>
+
+
+
+                <!-- 媒體平台 (統一為簡潔風格) -->
+
+                <div class="flex flex-wrap justify-center gap-6 mb-16">
+
+
+
+                    <!-- Meta (Facebook/Instagram) -->
+
+                    <div class="media-logo-card">
+
+                        <span class="primary-blue-text font-semibold">Meta (FB/IG)</span>
+
+                    </div>
+
+
+
+                    <!-- Google & Youtube -->
+
+                    <div class="media-logo-card">
+
+                        <span class="primary-blue-text font-semibold">Google & Youtube</span>
+
+                    </div>
+
+
+
+                    <!-- Criteo -->
+
+                    <div class="media-logo-card">
+
+                        <span class="primary-blue-text font-semibold">Criteo</span>
+
+                    </div>
+
+
+
+                    <!-- LINE Ads -->
+
+                    <div class="media-logo-card">
+
+                        <span class="primary-blue-text font-semibold">LINE Ads</span>
+
+                    </div>
+
+
+
+                    <!-- Dcard Ads -->
+
+                    <div class="media-logo-card">
+
+                        <span class="primary-blue-text font-semibold">Dcard Ads</span>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- 四大服務支柱 (核心服務) -->
+
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+
+                    <!-- 服務 1: 數據分析 -->
+
+                    <div class="text-center">
+
+                        <div class="p-4 mx-auto w-16 h-16 rounded-full bg-blue-100 primary-blue-text mb-4 flex items-center justify-center">
+
+                            <!-- Activity Icon -->
+
+                            <svg class="lucide w-8 h-8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+
+                        </div>
+
+                        <h3 class="text-xl font-bold mb-2">數據深度分析</h3>
+
+                        <p class="text-sm text-slate-600">利用專業工具，挖掘數據背後的用戶行為模式，確保優化決策基於事實。</p>
+
+                    </div>
+
+
+
+                    <!-- 服務 2: 創意策略 -->
+
+                    <div class="text-center">
+
+                        <div class="p-4 mx-auto w-16 h-16 rounded-full bg-blue-100 primary-blue-text mb-4 flex items-center justify-center">
+
+                            <!-- Bulb Icon -->
+
+                            <svg class="lucide w-8 h-8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 14c.2-1 .9-1.3 1.4-2.2.5-.9.7-2.1.3-3.1C16.8 7 15.6 6 14.3 6c-2.4 0-4.3 2.1-4.7 4.5-.4 2.1 1.7 4.5 4.5 4.5z"/><path d="M10 14c-.2-1-.9-1.3-1.4-2.2-.5-.9-.7-2.1-.3-3.1C7.2 7 8.4 6 9.7 6c2.4 0 4.3 2.1 4.7 4.5.4 2.1-1.7 4.5-4.5 4.5z"/><path d="M12 21a2 2 0 0 1-2-2v-2a2 2 0 0 1 4 0v2a2 2 0 0 1-2 2z"/></svg>
+
+                        </div>
+
+                        <h3 class="text-xl font-bold mb-2">創意內容優化</h3>
+
+                        <p class="text-sm text-slate-600">根據媒體特性與受眾習慣，量身打造吸睛廣告素材，提升點擊率與轉換率。</p>
+
+                    </div>
+
+
+
+                    <!-- 服務 3: 跨媒體整合 -->
+
+                    <div class="text-center">
+
+                        <div class="p-4 mx-auto w-16 h-16 rounded-full bg-blue-100 primary-blue-text mb-4 flex items-center justify-center">
+
+                            <!-- Link Icon -->
+
+                            <svg class="lucide w-8 h-8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.74 1.74"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.74-1.74"/></svg>
+
+                        </div>
+
+                        <h3 class="text-xl font-bold mb-2">全渠道整合投放</h3>
+
+                        <p class="text-sm text-slate-600">打破媒體隔閡，實現各平台間協同作戰，最大化預算綜效，避免資源浪費。</p>
+
+                    </div>
+
+
+
+                    <!-- 服務 4: 預算最佳化 -->
+
+                    <div class="text-center">
+
+                        <div class="p-4 mx-auto w-16 h-16 rounded-full bg-blue-100 primary-blue-text mb-4 flex items-center justify-center">
+
+                            <!-- Trending Up Icon -->
+
+                            <svg class="lucide w-8 h-8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+
+                        </div>
+
+                        <h3 class="text-xl font-bold mb-2">預算動態調整</h3>
+
+                        <p class="text-sm text-slate-600">根據實時成效，靈活調整各媒體預算配比，確保每一分錢都花在刀口上。</p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        
+
+        <!-- 5. NEW: 企業級 Meta 廣告帳戶開立 (Meta 帳戶優勢) -->
+
+        <section id="meta-pro" class="py-20 md:py-32 grid-bg">
+
+            <div class="container mx-auto px-6">
+
+                <div class="text-center mb-16">
+
+                    <span class="text-sm font-semibold text-blue-800 uppercase tracking-widest">Meta 官方認證夥伴專屬服務</span>
+
+                    <h2 class="text-4xl md:text-5xl font-bold text-slate-900 mt-2">企業級 Meta 廣告帳戶開立</h2>
+
+                </div>
+
+
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+
+                    
+
+                    <!-- 優勢 1: 節省稅費與手續費 -->
+
+                    <div class="meta-advantage-card">
+
+                        <div class="meta-icon-container">
+
+                            <!-- Gift Icon (替代原圖的禮物盒) -->
+
+                            <svg class="lucide w-10 h-10" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13M19 12v9"/><path d="M5 12v9"/><path d="M20 8h1a1 1 0 0 1 1 1v3"/><path d="M3 8h-1a1 1 0 0 0-1 1v3"/><path d="M22 3.5H16a1 1 0 0 0-1 1V8a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.5a1 1 0 0 0-1-1z"/><path d="M7 3.5H1a1 1 0 0 0-1 1V8a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.5a1 1 0 0 0-1-1z"/></svg>
+
+                        </div>
+
+                        <h3 class="text-xl font-bold text-slate-900 mb-2">節省稅費與手續費</h3>
+
+                        <p class="text-sm text-slate-600">省下 3% 跨境稅與自主申報時間，並省下 1.5% 刷卡手續費。</p>
+
+                    </div>
+
+
+
+                    <!-- 優勢 2: 廣告帳戶穩定性 100% -->
+
+                    <div class="meta-advantage-card">
+
+                        <div class="meta-icon-container">
+
+                            <!-- Infinity Icon (替代原圖的無限) -->
+
+                            <svg class="lucide w-10 h-10" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 12c-3.14 0-5.65-2.27-7.77-5.38C2.33 3.49 1.13.9 1 .5c.13.4.37.8.69 1.2s.82.9 1.55 1.7c.73.8 1.5 1.6 2.3 2.4"/><path d="M12 12c3.14 0 5.65-2.27 7.77-5.38C21.67 3.49 22.87.9 23 .5c-.13.4-.37.8-.69 1.2s-.82.9-1.55 1.7c-.73.8-1.5 1.6-2.3 2.4"/><path d="M12 12c3.14 0 5.65 2.27 7.77 5.38C21.67 20.51 22.87 23.1 23 23.5c-.13-.4-.37-.8-.69-1.2s-.82-.9-1.55-1.7c-.73-.8-1.5-1.6-2.3-2.4"/><path d="M12 12c-3.14 0-5.65 2.27-7.77 5.38C2.33 20.51 1.13 23.1 1 23.5c.13-.4.37-.8.69-1.2s.82-.9 1.55-1.7c.73-.8 1.5-1.6 2.3-2.4"/></svg>
+
+                        </div>
+
+                        <h3 class="text-xl font-bold text-slate-900 mb-2">廣告帳戶穩定性 100%</h3>
+
+                        <p class="text-sm text-slate-600">Meta 認證夥伴確保您的廣告帳戶穩定運行。</p>
+
+                    </div>
+
+
+
+                    <!-- 優勢 3: 開立三聯式營業發票 -->
+
+                    <div class="meta-advantage-card">
+
+                        <div class="meta-icon-container">
+
+                            <!-- Dollar Sign Icon (替代原圖的鈔票) -->
+
+                            <svg class="lucide w-10 h-10" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+
+                        </div>
+
+                        <h3 class="text-xl font-bold text-slate-900 mb-2">開立三聯式營業發票</h3>
+
+                        <p class="text-sm text-slate-600">提供正式發票，可合法抵扣營業稅。</p>
+
+                    </div>
+
+
+
+                    <!-- 優勢 4: 帳戶預算無上限 -->
+
+                    <div class="meta-advantage-card">
+
+                        <div class="meta-icon-container">
+
+                            <!-- Trending Up/Money Icon (替代原圖的鈔票成長圖) -->
+
+                            <svg class="lucide w-10 h-10" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><path d="M12 7h.01"/><path d="M22 10l-4-4-6 6"/><path d="M22 17h-4V8"/></svg>
+
+                        </div>
+
+                        <h3 class="text-xl font-bold text-slate-900 mb-2">帳戶預算無上限</h3>
+
+                        <p class="text-sm text-slate-600">擺脫帳戶額度限制，加值多少用多少。</p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+
+
+        <!-- 6. 專業優勢 Section (流程圖) -->
+
+        <section id="expertise" class="py-20 md:py-32 bg-white">
+
+            <div class="container mx-auto px-6">
+
+                <div class="text-center mb-16">
+
+                    <span class="text-sm font-semibold primary-blue-text uppercase tracking-widest">廣告效益循環</span>
+
+                    <h2 class="text-4xl md:text-5xl font-bold text-slate-900 mt-2">一站式廣告效益循環流程</h2>
+
+                </div>
+
+
+
+                <!-- 流程圖 (Responsive Flex/Grid) -->
+
+                <div class="flex flex-col md:flex-row justify-between items-stretch">
+
+                    
+
+                    <!-- 步驟 1: 策略規劃 -->
+
+                    <div class="process-step flex-shrink-0 w-full md:w-1/5 text-center p-4">
+
+                        <div class="relative inline-flex items-center justify-center w-20 h-20 rounded-full primary-blue text-white text-3xl font-extrabold mb-4 z-10 shadow-lg accent-shadow">1</div>
+
+                        <h4 class="text-xl font-bold text-slate-900 mb-2">策略規劃</h4>
+
+                        <p class="text-sm text-slate-600">明確目標客群，制定跨媒體投放藍圖。</p>
+
+                    </div>
+
+
+
+                    <!-- 步驟 2: 媒體配置 -->
+
+                    <div class="process-step flex-shrink-0 w-full md:w-1/5 text-center p-4">
+
+                        <div class="relative inline-flex items-center justify-center w-20 h-20 rounded-full primary-blue text-white text-3xl font-extrabold mb-4 z-10 shadow-lg accent-shadow">2</div>
+
+                        <h4 class="text-xl font-bold text-slate-900 mb-2">媒體配置</h4>
+
+                        <p class="text-sm text-slate-600">選擇最佳媒體組合，進行預算精準配置。</p>
+
+                    </div>
+
+
+
+                    <!-- 步驟 3: 創意執行 -->
+
+                    <div class="process-step flex-shrink-0 w-full md:w-1/5 text-center p-4">
+
+                        <div class="relative inline-flex items-center justify-center w-20 h-20 rounded-full primary-blue text-white text-3xl font-extrabold mb-4 z-10 shadow-lg accent-shadow">3</div>
+
+                        <h4 class="text-xl font-bold text-slate-900 mb-2">創意執行</h4>
+
+                        <p class="text-sm text-slate-600">製作高轉換素材，確保廣告表現力。</p>
+
+                    </div>
+
+
+
+                    <!-- 步驟 4: 監測優化 -->
+
+                    <div class="process-step flex-shrink-0 w-full md:w-1/5 text-center p-4">
+
+                        <div class="relative inline-flex items-center justify-center w-20 h-20 rounded-full primary-blue text-white text-3xl font-extrabold mb-4 z-10 shadow-lg accent-shadow">4</div>
+
+                        <h4 class="text-xl font-bold text-slate-900 mb-2">監測優化</h4>
+
+                        <p class="text-sm text-slate-600">即時監控數據，A/B Test 持續迭代優化。</p>
+
+                    </div>
+
+
+
+                    <!-- 步驟 5: 成果回饋 -->
+
+                    <div class="process-step flex-shrink-0 w-full md:w-1/5 text-center p-4">
+
+                        <div class="relative inline-flex items-center justify-center w-20 h-20 rounded-full primary-blue text-white text-3xl font-extrabold mb-4 z-10 shadow-lg accent-shadow">5</div>
+
+                        <h4 class="text-xl font-bold text-slate-900 mb-2">成果回饋</h4>
+
+                        <p class="text-sm text-slate-600">提供完整報告，將成效回饋至下一波策略。</p>
+
+                    </div>
+
+
+
+                </div>
+
+
+
+                <!-- 流程下方的 CTA -->
+
+                <div class="text-center mt-16">
+
+                    <a href="#contact" class="inline-block px-8 py-3 text-lg text-white secondary-blue font-bold rounded-full hover:bg-blue-600 transition duration-300 transform hover:scale-105">
+
+                        預約顧問諮詢，啟動您的專屬流程
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+
+
+        <!-- 7. 成功案例 Section -->
+
+        <section id="cases" class="py-20 md:py-32 bg-slate-100">
+
+            <div class="container mx-auto px-6">
+
+                <div class="text-center mb-16">
+
+                    <span class="text-sm font-semibold primary-blue-text uppercase tracking-widest">實戰見證</span>
+
+                    <h2 class="text-4xl md:text-5xl font-bold primary-blue-text mt-2">成功案例分享</h2>
+
+                </div>
+
+
+
+                <!-- 成功案例 - 關鍵成效數據 -->
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 text-center max-w-5xl mx-auto mb-20 p-8 bg-white rounded-xl shadow-xl">
+
+                    
+
+                    <!-- 1. 網站營收提升 150% -->
+
+                    <div>
+
+                        <div class="text-6xl font-extrabold primary-blue-text case-metric">150%</div>
+
+                        <h3 class="text-2xl font-bold text-slate-900 mb-2">網站營收提升</h3>
+
+                        <p class="text-slate-600 max-w-sm mx-auto">協助食品電商優化廣告策略，大幅提升網站轉換效率。</p>
+
+                    </div>
+
+
+
+                    <!-- 2. 成交來自廣告 70% -->
+
+                    <div>
+
+                        <div class="text-6xl font-extrabold primary-blue-text case-metric">70%</div>
+
+                        <h3 class="text-2xl font-bold text-slate-900 mb-2">成交來自於廣告</h3>
+
+                        <p class="text-slate-600 max-w-sm mx-auto">房地產透過加入 Meta 名單廣告以增加成交。</p>
+
+                    </div>
+
+                    
+
+                    <!-- 3. 來客數增加 40% -->
+
+                    <div>
+
+                        <div class="text-6xl font-extrabold primary-blue-text case-metric">40%</div>
+
+                        <h3 class="text-2xl font-bold text-slate-900 mb-2">來客數增加</h3>
+
+                        <p class="text-slate-600 max-w-sm mx-auto">幫助實體門市透過數位行銷提升實際客源流量。</p>
+
+                    </div>
+
+
+
+                    <!-- 4. 學員報名 10K+ -->
+
+                    <div>
+
+                        <div class="text-6xl font-extrabold primary-blue-text case-metric">10K+</div>
+
+                        <h3 class="text-2xl font-bold text-slate-900 mb-2">學員報名</h3>
+
+                        <p class="text-slate-600 max-w-sm mx-auto">教育課程透過銷售漏斗規劃媒體投放策略，成功獲得更多報名。</p>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- 成功案例 - 詳細電商案例 -->
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 max-w-6xl mx-auto">
+
+                    
+
+                    <!-- 案例 A: 電商 - 家電 -->
+
+                    <div class="bg-white p-8 rounded-xl shadow-lg border-t-4 border-blue-600">
+
+                        <h3 class="text-3xl font-extrabold text-slate-900 mb-6">電商 - 家電</h3>
+
+                        
+
+                        <!-- 需求/痛點 -->
+
+                        <div class="bg-blue-100 p-4 rounded-lg flex items-start text-blue-800 mb-6">
+
+                            <svg class="lucide w-5 h-5 mr-3 mt-1 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="16" y2="12"/><line x1="12" x2="12.01" y1="8" y2="8"/></svg>
+
+                            <p class="text-sm font-medium">
+
+                                需求：集資平台成功經驗，放大效益至品牌官網
+
+                            </p>
+
+                        </div>
+
+                        
+
+                        <!-- 策略 1 -->
+
+                        <div class="flex mb-4">
+
+                            <div class="bg-blue-600 text-white w-8 h-8 flex items-center justify-center rounded-lg font-bold mr-4 flex-shrink-0">1</div>
+
+                            <div>
+
+                                <h4 class="font-bold text-slate-900">素材分流投放</h4>
+
+                                <p class="text-sm text-slate-600">依據產品特性，以素材/型號為主做行銷預算配置，精準放大效益最佳素材。</p>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- 策略 2 -->
+
+                        <div class="flex mb-8">
+
+                            <div class="bg-blue-600 text-white w-8 h-8 flex items-center justify-center rounded-lg font-bold mr-4 flex-shrink-0">2</div>
+
+                            <div>
+
+                                <h4 class="font-bold text-slate-900">受眾再利用</h4>
+
+                                <p class="text-sm text-slate-600">運用集資名單建立類似受眾，快速觸及潛在客戶並提升成效。</p>
+
+                            </div>
+
+                        </div>
+
+                        
+
+                        <!-- 成效指標 -->
+
+                        <div class="flex justify-around text-center border-t pt-4">
+
+                            <div>
+
+                                <p class="text-4xl font-extrabold primary-blue-text">雙位數</p>
+
+                                <p class="text-sm text-slate-500">ROAS 突破</p>
+
+                            </div>
+
+                            <div>
+
+                                <p class="text-4xl font-extrabold primary-blue-text">3倍</p>
+
+                                <p class="text-sm text-slate-500">月營收成長</p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- 案例 B: 電商 - 居家 -->
+
+                    <div class="bg-white p-8 rounded-xl shadow-lg border-t-4 border-blue-600">
+
+                        <h3 class="text-3xl font-extrabold text-slate-900 mb-6">電商 - 居家</h3>
+
+                        
+
+                        <!-- 需求/痛點 -->
+
+                        <div class="bg-blue-100 p-4 rounded-lg flex items-start text-blue-800 mb-6">
+
+                            <svg class="lucide w-5 h-5 mr-3 mt-1 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="16" y2="12"/><line x1="12" x2="12.01" y1="8" y2="8"/></svg>
+
+                            <p class="text-sm font-medium">
+
+                                痛點：前代理商測試過多行銷目標，廣告預算分散，廣告投資報酬率 (ROAS) 偏低
+
+                            </p>
+
+                        </div>
+
+                        
+
+                        <!-- 策略 1 -->
+
+                        <div class="flex mb-4">
+
+                            <div class="bg-blue-600 text-white w-8 h-8 flex items-center justify-center rounded-lg font-bold mr-4 flex-shrink-0">1</div>
+
+                            <div>
+
+                                <h4 class="font-bold text-slate-900">精準受眾鎖定</h4>
+
+                                <p class="text-sm text-slate-600">由於產品單價屬性特殊，透過「交集受眾」找到高價值客群，轉換率大幅提升。</p>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- 策略 2 -->
+
+                        <div class="flex mb-8">
+
+                            <div class="bg-blue-600 text-white w-8 h-8 flex items-center justify-center rounded-lg font-bold mr-4 flex-shrink-0">2</div>
+
+                            <div>
+
+                                <h4 class="font-bold text-slate-900">區分產品線投遞</h4>
+
+                                <p class="text-sm text-slate-600">將產品區分 2-3 條產品線，分開獨立行銷，預算聚焦高效產品，逐步放大投資報酬率高的產品線。</p>
+
+                            </div>
+
+                        </div>
+
+                        
+
+                        <!-- 成效指標 -->
+
+                        <div class="flex justify-around text-center border-t pt-4">
+
+                            <div>
+
+                                <p class="text-4xl font-extrabold primary-blue-text">2.5倍</p>
+
+                                <p class="text-sm text-slate-500">ROAS 成長</p>
+
+                            </div>
+
+                            <div>
+
+                                <p class="text-4xl font-extrabold primary-blue-text">6倍</p>
+
+                                <p class="text-sm text-slate-500">轉換率提升</p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+
+
+        <!-- 8. NEW: 聯盟夥伴服務 (額外行銷服務) -->
+
+        <section id="partner-services" class="py-20 md:py-32 bg-white">
+
+            <div class="container mx-auto px-6">
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+
+                    <!-- 左側文字與服務列表 -->
+
+                    <div>
+
+                        <div class="mb-10">
+
+                            <span class="text-sm font-semibold primary-blue-text uppercase tracking-widest">擴展行銷邊界</span>
+
+                            <h2 class="text-4xl md:text-5xl font-bold text-slate-900 mt-2">聯盟夥伴服務</h2>
+
+                        </div>
+
+                        
+
+                        <!-- 服務 1: 網紅媒合 -->
+
+                        <div class="mb-8">
+
+                            <h3 class="text-2xl font-bold text-slate-900 mb-2">
+
+                                <span class="text-blue-600 mr-2 font-extrabold">1</span>網紅媒合
+
+                            </h3>
+
+                            <p class="text-lg text-slate-600 border-l-4 border-blue-400 pl-4">
+
+                                專業團隊提供從腳本撰寫到動畫製作的完整解決方案，打造獨特品牌故事。
+
+                            </p>
+
+                        </div>
+
+
+
+                        <!-- 服務 2: 口碑行銷 -->
+
+                        <div class="mb-8">
+
+                            <h3 class="text-2xl font-bold text-slate-900 mb-2">
+
+                                <span class="text-blue-600 mr-2 font-extrabold">2</span>口碑行銷
+
+                            </h3>
+
+                            <p class="text-lg text-slate-600 border-l-4 border-blue-400 pl-4">
+
+                                量身打造專業文案，提升品牌公信力與媒體曝光度。
+
+                            </p>
+
+                        </div>
+
+
+
+                        <!-- CTA -->
+
+                        <a href="#contact" class="inline-block mt-4 px-8 py-3 text-white secondary-blue font-bold rounded-full hover:bg-blue-600 transition duration-300">
+
+                            了解更多聯盟服務
+
+                        </a>
+
+                    </div>
+
+                    
+
+                    <!-- 右側視覺圖 (使用一個代表性的圖片/插畫) -->
+
+                    <div class="hidden lg:block">
+
+                        <!-- 由於無法直接使用用戶提供的 JPG 圖片，我們使用一個具備相似意境的視覺 placeholder -->
+
+                        <div class="w-full h-96 bg-slate-100 rounded-2xl shadow-xl flex items-center justify-center p-6">
+
+                                                    </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+
+
+        <!-- 9. 聯絡我們 Section (表單區塊) -->
+
+        <section id="contact" class="py-20 md:py-32 primary-blue text-white">
+
+            <div class="container mx-auto px-6">
+
+                <!-- 標題調整 -->
+
+                <h2 class="text-4xl md:text-5xl font-extrabold text-center mb-16">免費諮詢</h2>
+
+
+
+                <!-- 表單卡片 -->
+
+                <div class="max-w-3xl mx-auto bg-white p-8 md:p-12 rounded-xl shadow-2xl text-slate-800">
+
+                    <p class="text-lg text-slate-600 mb-8 text-center font-medium">
+
+                        填寫下方資訊，讓我們的專業顧問團隊為您量身規劃高效益廣告策略。
+
+                    </p>
+
+                    
+
+                    <form id="consultation-form">
+
+                        <!-- 姓名 -->
+
+                        <div class="mb-5">
+
+                            <label for="name" class="block text-sm font-bold text-slate-700 mb-2">
+
+                                <span class="primary-blue-text mr-1">*</span>姓名
+
+                            </label>
+
+                            <input type="text" id="name" name="name" required class="w-full p-3 border border-slate-300 rounded-lg focus:border-blue-500 focus:ring-blue-500 transition duration-150" placeholder="請輸入您的姓名">
+
+                        </div>
+
+                        
+
+                        <!-- 電子信箱 -->
+
+                        <div class="mb-5">
+
+                            <label for="email" class="block text-sm font-bold text-slate-700 mb-2">
+
+                                <span class="primary-blue-text mr-1">*</span>電子信箱
+
+                            </label>
+
+                            <input type="email" id="email" name="email" required class="w-full p-3 border border-slate-300 rounded-lg focus:border-blue-500 focus:ring-blue-500 transition duration-150" placeholder="請輸入有效的電子信箱">
+
+                        </div>
+
+                        
+
+                        <!-- 聯絡電話 -->
+
+                        <div class="mb-5">
+
+                            <label for="phone" class="block text-sm font-bold text-slate-700 mb-2">
+
+                                <span class="primary-blue-text mr-1">*</span>聯絡電話
+
+                            </label>
+
+                            <input type="tel" id="phone" name="phone" required class="w-full p-3 border border-slate-300 rounded-lg focus:border-blue-500 focus:ring-blue-500 transition duration-150" placeholder="請輸入您的電話號碼">
+
+                        </div>
+
+                        
+
+                        <!-- 品牌/公司名稱 -->
+
+                        <div class="mb-5">
+
+                            <label for="company" class="block text-sm font-bold text-slate-700 mb-2">
+
+                                <span class="primary-blue-text mr-1">*</span>品牌/公司名稱
+
+                            </label>
+
+                            <input type="text" id="company" name="company" required class="w-full p-3 border border-slate-300 rounded-lg focus:border-blue-500 focus:ring-blue-500 transition duration-150" placeholder="貴公司或品牌名稱">
+
+                        </div>
+
+                        
+
+                        <!-- 品牌官網 (選填) -->
+
+                        <div class="mb-8">
+
+                            <label for="website" class="block text-sm font-bold text-slate-700 mb-2">
+
+                                品牌官網 (選填)
+
+                            </label>
+
+                            <input type="url" id="website" name="website" class="w-full p-3 border border-slate-300 rounded-lg focus:border-blue-500 focus:ring-blue-500 transition duration-150" placeholder="http://或https:// 網址">
+
+                        </div>
+
+
+
+                        <!-- 提交按鈕 -->
+
+                        <button type="submit" class="w-full py-3 text-xl text-white secondary-blue font-bold rounded-xl hover:bg-blue-600 transition duration-300 transform hover:scale-105 shadow-lg">
+
+                            送出諮詢表單
+
+                        </button>
+
+                    </form>
+
+                    
+
+                    <p class="mt-6 text-xs text-center text-slate-400">
+
+                        點擊送出後，表單將會模擬送出並顯示提示訊息。
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        
+
+    </main>
+
+
+
+    <!-- 頁腳 (Footer) -->
+
+    <footer class="bg-slate-900 text-slate-400 py-8">
+
+        <div class="container mx-auto px-6 text-center text-sm">
+
+            <p>&copy; 2025 atfone ads. All rights reserved.</p>
+
+            <p class="mt-2">專業團隊洞察，驅動廣告效益極大化</p>
+
+        </div>
+
+    </footer>
+
+
+
+
+
+    <!-- 提示訊息 Modal 結構 -->
+
+    <div id="message-container" class="hidden">
+
+        <div class="message-backdrop" onclick="hideMessageModal()"></div>
+
+        <div class="message-modal">
+
+            <h3 class="text-2xl font-bold primary-blue-text mb-4">訊息通知</h3>
+
+            <p id="message-text" class="text-slate-700 mb-6"></p>
+
+            <button onclick="hideMessageModal()" class="px-6 py-2 bg-secondary-blue text-white rounded-lg hover:bg-blue-600 transition">確定</button>
+
+        </div>
+
+    </div>
+
+
+
+
+
+    <script>
+
+        // 導航欄與菜單控制
+
+        document.getElementById('mobile-menu-button').addEventListener('click', () => {
+
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+
+        });
+
+
+
+        function hideMobileMenu() {
+
+            document.getElementById('mobile-menu').classList.add('hidden');
+
+        }
+
+
+
+        // 提示訊息 Modal 邏輯 (取代 alert/confirm)
+
+        function showMessageModal(message) {
+
+            const container = document.getElementById('message-container');
+
+            const messageText = document.getElementById('message-text');
+
+            messageText.textContent = message;
+
+            container.classList.remove('hidden');
+
+            // 阻止背景滾動
+
+            document.body.style.overflow = 'hidden';
+
+        }
+
+
+
+        function hideMessageModal() {
+
+            const container = document.getElementById('message-container');
+
+            container.classList.add('hidden');
+
+            // 恢復背景滾動
+
+            document.body.style.overflow = '';
+
+        }
+
+
+
+        // 頁面加載完成後，檢查是否有 Hash，用於平滑滾動
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+
+            anchor.addEventListener('click', function (e) {
+
+                e.preventDefault();
+
+                const targetId = this.getAttribute('href').substring(1);
+
+                const targetElement = document.getElementById(targetId);
+
+                if (targetElement) {
+
+                    targetElement.scrollIntoView({
+
+                        behavior: 'smooth'
+
+                    });
+
+                }
+
+                // 如果是移動菜單中的鏈接，關閉菜單
+
+                if (window.innerWidth < 768) {
+
+                    hideMobileMenu();
+
+                }
+
+            });
+
+        });
+
+        
+
+        // 表單提交處理邏輯 (取代實際提交)
+
+        const form = document.getElementById('consultation-form');
+
+        if (form) {
+
+            form.addEventListener('submit', function (e) {
+
+                e.preventDefault();
+
+
+
+                // 檢查表單是否通過瀏覽器內建驗證 (required fields)
+
+                if (!form.checkValidity()) {
+
+                    // 如果沒有通過，讓瀏覽器顯示內建錯誤訊息
+
+                    form.reportValidity();
+
+                    return;
+
+                }
+
+
+
+                // 模擬成功提交
+
+                showMessageModal('感謝您的資訊！您的免費諮詢表單已成功送出，我們將有專人盡快與您聯繫，共創廣告高效益。');
+
+                
+
+                // 重設表單
+
+                form.reset();
+
+            });
+
+        }
+
+    </script>
+
+</body>
+
+</html>
